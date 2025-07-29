@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # VISTA WEB [FLORES.HTML](https://web-flores.netlify.app/)
 
 # Flores en HTML y CSS
@@ -12,3 +13,6 @@ La página web es completamente responsiva y se adapta a cualquier dispositivo. 
 
 ## Autor
 - **Nilver TI**
+=======
+# primer-mes
+>>>>>>> 5b5dcf63f51d3cc1e30697a338a7dca99bde3c06
