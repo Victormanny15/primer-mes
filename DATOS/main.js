@@ -7,10 +7,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const wrapper = document.querySelector(".wrapper");
   const openBtn = document.getElementById("openBtn");
   const closeBtn = document.getElementById("closeBtn");
+  const backgroundMusic = document.getElementById("background-music");
 
   // Es una buena práctica verificar si los elementos existen antes de agregarles eventos.
   if (wrapper && openBtn && closeBtn) {
     const toggleEnvelope = (isOpen) => {
+      if (isOpen && backgroundMusic && backgroundMusic.paused) {
+        backgroundMusic.play().catch(error => {
+          // El navegador puede bloquear la reproducción automática si no hay interacción previa.
+          console.log("La reproducción de audio fue bloqueada por el navegador:", error);
+        });
+      }
       // Añade o quita la clase 'open' del sobre
       wrapper.classList.toggle("open", isOpen);
       // Muestra u oculta los botones correspondientes
@@ -45,10 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentRotation = 0;
     let autoRotateInterval;
 
+    
     const rotateCarousel = () => {
         carousel.style.transform = `translateZ(-${radius}px) rotateY(${currentRotation}deg)`;
     };
-
+    // y la animación continúa desde allí.
     const nextSlide = () => {
         currentRotation -= slideAngle;
         rotateCarousel();
@@ -58,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentRotation += slideAngle;
         rotateCarousel();
     };
-
     const startAutoRotate = () => {
         clearInterval(autoRotateInterval);
         autoRotateInterval = setInterval(nextSlide, 3000);
@@ -68,13 +75,13 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(autoRotateInterval);
     };
 
+
     nextBtn.addEventListener('click', nextSlide);
     prevBtn.addEventListener('click', prevSlide);
-
     carouselContainer.addEventListener('mouseenter', stopAutoRotate);
     carouselContainer.addEventListener('mouseleave', startAutoRotate);
 
-    rotateCarousel();
+    // Iniciar la animación
     startAutoRotate();
   }
 });
