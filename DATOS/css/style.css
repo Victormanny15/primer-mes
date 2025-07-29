@@ -17,7 +17,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 20px;
+  padding: 0 1rem;
 }
 
 canvas {
@@ -29,9 +29,11 @@ canvas {
 }
 
 .greetings {
-  font-size: 6rem;
+  /* Usamos clamp() para un tamaño de fuente fluido y responsivo */
+  font-size: clamp(3rem, 12vw, 6rem);
   font-weight: 900;
   color: #ff6f91;
+  line-height: 1.1; /* Evita que las letras se superpongan si el texto se divide en dos líneas */
   margin-bottom: 30px;
 }
 
@@ -54,6 +56,7 @@ canvas {
   font-size: 1.5rem;
   color: #ff9a8b;
   margin-bottom: 20px;
+  max-width: 800px; /* Para que el texto no sea demasiado ancho en pantallas grandes */
 }
 
 .description p {
@@ -82,10 +85,7 @@ canvas {
 }
 
 @media screen and (max-width: 574px) {
-  .greetings {
-    font-size: 3rem;
-    font-weight: 500;
-  }
+  /* El tamaño de .greetings ya es responsivo con clamp(). */
   .description {
     font-size: 1rem;
   }
